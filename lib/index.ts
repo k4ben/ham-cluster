@@ -51,7 +51,7 @@ module.exports = class {
         const spotArr = newString.split(" ");
         if (spotArr.length < 6) throw "Invalid Spot. Less than 6 segments found.";
         let spotObj = {
-          deCall: spotArr[2].slice(0, spotArr[2].length - 3),
+          deCall: spotArr[2].includes("#") ? spotArr[2].slice(0, spotArr[2].length - 3) : spotArr[2].slice(0, spotArr[2].length - 1),
           freq: spotArr[3],
           dxCall: spotArr[4],
           time: spotArr[spotArr.length-1].slice(0, 5)
