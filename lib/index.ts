@@ -10,7 +10,7 @@ type ClusterEventLabels = "connected" | "spot" | "error";
 
 module.exports = class {
   private sentCall: boolean = false;
-  private options: ClusterOptions | undefined;
+  private options: ClusterOptions;
   private handlers = {} as {[key in ClusterEventLabels]: Function};
 
   /**
@@ -79,6 +79,20 @@ module.exports = class {
    */
   on(label: ClusterEventLabels, event: Function) {
     this.handlers[label] = event;
+  }
+
+  /**
+   * @returns cluster hostname.
+   */
+  public get hostname() {
+    return this.options.hostname;
+  }
+
+  /**
+   * @returns cluster port.
+   */
+  public get port() {
+    return this.options.port;
   }
 
 }
