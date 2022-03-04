@@ -8,7 +8,7 @@ interface ClusterOptions {
 
 type ClusterEventLabels = "connected" | "spot" | "error";
 
-class HamCluster {
+module.exports = class {
   private sentCall: boolean = false;
   private options: ClusterOptions | undefined;
   private handlers = {} as {[key in ClusterEventLabels]: Function};
@@ -82,5 +82,3 @@ class HamCluster {
   }
 
 }
-
-export default HamCluster;
