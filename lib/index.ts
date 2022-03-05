@@ -97,5 +97,5 @@ class HamCluster {
 
 }
 
-module.exports = HamCluster;
 export default HamCluster;
+export { ClusterOptions };
