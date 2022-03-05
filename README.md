@@ -34,3 +34,4 @@ rbnCluster.on('error', error => {
 * Add automatic detection for comment fields from RBN, FT8, N1MM, etc.
 * Use inheritance for easy implementation ([RBNSpot, FT8Spot, N1MMSpot] extends Spot).
 * Improve edge cases and error handling.
+* Use "signed-in" event for timeout/retry.
