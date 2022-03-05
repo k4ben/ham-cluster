@@ -6,10 +6,11 @@ interface ClusterOptions {
   type?: "rbn"
 }
 
-type ClusterEventLabels = "connected" | "spot" | "error";
+type ClusterEventLabels = "connected" | "signed-in" | "spot" | "error";
 
 class HamCluster {
   private sentCall: boolean = false;
+  private signedIn: boolean = false;
   private options: ClusterOptions;
   private handlers = {} as {[key in ClusterEventLabels]: Function};
 
@@ -29,8 +30,12 @@ class HamCluster {
     });
 
     client.on('data', (data: Buffer | string) => {
-      if (this.sentCall) this.interpretLine(data.toString());
-      else {
+      if (this.sentCall && this.signedIn) {
+        this.interpretLine(data.toString());
+      } else if (data.toString().startsWith(callsign + " de ")) {
+        this.trigger("signed-in");
+        this.signedIn = true;
+      } else {
         client.write(callsign + "\n");
         this.sentCall = true;
       }
@@ -96,6 +101,8 @@ class HamCluster {
   }
 
 }
+
+module.exports = HamCluster;
 
 export default HamCluster;
 export { ClusterOptions };
