@@ -1,6 +1,6 @@
 {
   "name": "ham-cluster",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An event-based TypeScript module for accessing ham radio spot clusters.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,8 +18,5 @@
   "devDependencies": {
     "@types/node": "^17.0.21",
     "typescript": "^4.5.2"
-  },
-  "dependencies": {
-    "typedoc": "^0.22.12"
   }
 }

@@ -1,14 +1,14 @@
 const net = require('net');
 
 interface ClusterOptions {
-  hostname: string
-  port: number
+  hostname: string,
+  port: number,
   type?: "rbn"
 }
 
 type ClusterEventLabels = "connected" | "spot" | "error";
 
-module.exports = class {
+class HamCluster {
   private sentCall: boolean = false;
   private options: ClusterOptions;
   private handlers = {} as {[key in ClusterEventLabels]: Function};
@@ -96,3 +96,6 @@ module.exports = class {
   }
 
 }
+
+module.exports = HamCluster;
+export default HamCluster;
